@@ -1,0 +1,38 @@
+program: hyperparameter_search.py
+method: bayes
+metric:
+  name: validation_loss
+  goal: minimize
+parameters:
+  # Script parameters
+  model-identifier:
+    value: "gpt-3.5-turbo-0125"
+  dataset-name:
+    value: "trivia_qa"
+  device:
+    value: "cuda:0"
+  num-in-context-samples:
+    value: 10
+  data-dir:
+    value: "/mnt/hdd-nfs/deul/data_new"
+  num-training-steps:
+    value: 450
+  # Actual hyperparameter search params
+  learning_rate:
+    distribution: log_uniform_values
+    min: 0.00001
+    max: 0.01
+  weight_decay:
+    distribution: uniform
+    min: 0.0001
+    max: 0.05
+early_terminate:
+  type: hyperband
+  eta: 2
+  min_iter: 40
+command:
+  - python3
+  - ${program}
+  - "--track-emissions"
+  - "--wandb"
+  - ${args}
