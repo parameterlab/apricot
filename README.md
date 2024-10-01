@@ -1,7 +1,8 @@
 # 🍑 APRICOT: Calibrating Large Language Models Using Their Generations Only
 
-This is the code repository for the paper [Calibrating Large Language Models Using Their Generations Only]() by 
+This is the code repository for the paper [Calibrating Large Language Models Using Their Generations Only](https://aclanthology.org/2024.acl-long.824/) by 
 [Dennis Ulmer](http://dennisulmer.eu/), [Martin Gubri](https://gubri.eu/), [Hwaran Lee](https://hwaranlee.github.io/), [Sangdoo Yun](https://sangdooyun.github.io/) and [Seong Joon Oh](https://coallaoh.github.io/).
+
 Developed at [Parameter Lab](https://parameterlab.de/) with the support of [Naver AI Lab](https://clova.ai/en/research/publications.html).
 
 ## Installation
@@ -41,4 +42,26 @@ Afterwards, run the following scripts from `/experiments`:
 
 Please cite the paper as following:
 
-[Citation coming soon]
+```bibtex
+@inproceedings{ulmer2024calibrating,
+    title = "Calibrating Large Language Models Using Their Generations Only",
+    author = "Ulmer, Dennis  and
+      Gubri, Martin  and
+      Lee, Hwaran  and
+      Yun, Sangdoo  and
+      Oh, Seong",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.824",
+    doi = "10.18653/v1/2024.acl-long.824",
+    pages = "15440--15459",
+    abstract = "As large language models (LLMs) are increasingly deployed in user-facing applications, building trust and maintaining safety by accurately quantifying a model{'}s confidence in its prediction becomes even more important. However, finding effective ways to calibrate LLMs{---}especially when the only interface to the models is their generated text{---}remains a challenge. We propose APRICOT (Auxiliary prediction of confidence targets): A method to set confidence targets and train an additional model that predicts an LLM{'}s confidence based on its textual input and output alone. This approach has several advantages: It is conceptually simple, does not require access to the target model beyond its output, does not interfere with the language generation, and has a multitude of potential usages, for instance by verbalizing the predicted confidence or using it to re-prompting the LLM to accurately reflecting its uncertainty. We show how our approach performs competitively in terms of calibration error for white-box and black-box LLMs on closed-book question-answering to detect incorrect LLM answers.",
+}
+```
+
