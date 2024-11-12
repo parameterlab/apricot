@@ -1,0 +1,76 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "coqa",
+  "dataset_size": 19205950,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/stanfordnlp/coqa@0d9e9952f1ef6e5415492d3d84b5873259137e3c/data/train-00000-of-00001.parquet": {
+      "num_bytes": 11394343,
+      "checksum": null
+    },
+    "hf://datasets/stanfordnlp/coqa@0d9e9952f1ef6e5415492d3d84b5873259137e3c/data/validation-00000-of-00001.parquet": {
+      "num_bytes": 793144,
+      "checksum": null
+    }
+  },
+  "download_size": 12187487,
+  "features": {
+    "source": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "story": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "questions": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answers": {
+      "feature": {
+        "input_text": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "answer_start": {
+          "dtype": "int32",
+          "_type": "Value"
+        },
+        "answer_end": {
+          "dtype": "int32",
+          "_type": "Value"
+        }
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 31393437,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 17980527,
+      "num_examples": 7199,
+      "dataset_name": "coqa"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 1225423,
+      "num_examples": 500,
+      "dataset_name": "coqa"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
