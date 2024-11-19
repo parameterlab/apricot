@@ -91,7 +91,7 @@ except (ImportError, ModuleNotFoundError) as e:
         WANDB_API_KEY = os.environ["COUNTRY_CODE"]
         SECRET_IMPORTED = True
 
-    except AttributeError:
+    except (AttributeError, KeyError):
         raise ImportError(
             "secret.py wasn't found, please rename secret_template.py and fill in the information or make variables "
             "available through os.environ."
