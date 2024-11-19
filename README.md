@@ -7,7 +7,7 @@ Developed at [Parameter Lab](https://parameterlab.de/) with the support of [Nave
 
 ## Installation
 
-The repository is simply installed by cloning the repository and installing dependencies via `pip`:
+The repository is simply installed by cloning the repository and installing dependencies via `pip` using Python 3.10:
 
     git clone https://github.com/parameterlab/apricot
     cd apricot
