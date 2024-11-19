@@ -9,6 +9,7 @@ import dill
 import json
 import os
 from typing import Optional, List, Dict, Any
+import warnings
 
 # EXT
 from codecarbon import OfflineEmissionsTracker
@@ -54,7 +55,7 @@ except (ImportError, ModuleNotFoundError) as _:
         SECRET_IMPORTED = True
 
     except AttributeError:
-        raise ImportError(
+        warnings.warn(
             "secret.py wasn't found, please rename secret_template.py and fill in the information or make variables "
             "available through os.environ."
         )
