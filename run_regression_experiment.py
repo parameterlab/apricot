@@ -632,7 +632,7 @@ def run_single_calibration_experiment(
     # Model saving
     if model_save_dir is not None:
         model_type = "binary" if use_binary_targets else "clustering"
-        model_name = f"{calibration_model_identifier}_{model_type}_for_{model_identifier}_{dataset_name}"
+        model_name = f"apricot_{model_type}_{dataset_name}_{calibration_model_identifier.replace('/', '-')}_for_{model_identifier.replace('/', '-')}"
         model_save_path = os.path.join(model_save_dir, model_name)
 
         if not os.path.exists(model_save_path):
