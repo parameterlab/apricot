@@ -5,6 +5,23 @@ This is the code repository for the paper [Calibrating Large Language Models Usi
 
 Developed at [Parameter Lab](https://parameterlab.de/) with the support of [Naver AI Lab](https://clova.ai/en/research/publications.html).
 
+## Models
+
+The 🍑 fine-tuned models are now available on [the Hugging Face hub](https://huggingface.co/collections/parameterlab/apricot-models-673d2cae40b6ff437a86f0bf) 🤗.
+
+Here’s how you can use them:
+```python
+from transformers import AutoModel, AutoTokenizer
+tokenizer = AutoTokenizer.from_pretrained("microsoft/deberta-v3-base")
+model = AutoModel.from_pretrained("parameterlab/apricot_clustering_trivia_qa_deberta-v3-base_for_vicuna-7b-v1.5")
+```
+
+To select a different model, adjust the model name using the following pattern `apricot_{model_type}_{dataset_name}_deberta-v3-base_for_{model_name}` where:
+- `{model_type}` can be either `clustering` or `binary`
+- `{dataset_name}` can be either `trivia_qa` or `coqa`
+- `{model_name}` can be either `vicuna-7b-v1.5` or `gpt-3.5-turbo-0125`
+
+
 ## Installation
 
 The repository is simply installed by cloning the repository and installing dependencies via `pip` using Python 3.10:
