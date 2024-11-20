@@ -30,6 +30,7 @@ from transformers import (
     AutoTokenizer,
     AutoConfig,
     AutoModelForSequenceClassification,
+    TrainingArguments,
 )
 import transformers
 import wandb
@@ -91,8 +92,8 @@ except (ImportError, ModuleNotFoundError) as e:
         WANDB_API_KEY = os.environ["COUNTRY_CODE"]
         SECRET_IMPORTED = True
 
-    except AttributeError:
-        raise ImportError(
+    except (AttributeError, KeyError):
+        warnings.warn(
             "secret.py wasn't found, please rename secret_template.py and fill in the information or make variables "
             "available through os.environ."
         )
@@ -191,6 +192,8 @@ def run_single_calibration_experiment(
     data_dir: str,
     result_dir: str,
     seed: int,
+    model_save_dir: Optional[str] = None,
+    push_to_hub: bool = False,
     wandb_run: Optional[WandBRun] = None,
 ):
     """
@@ -238,6 +241,8 @@ def run_single_calibration_experiment(
         Directory to save results into.
     seed: int
         Random seed used for replicability.
+    model_save_dir: Optional[str]
+        Directory to save model weights to. Used to e.g. push models to the HF hub.
     wandb_run: WandBRun
         Weights & Biases run for logging.
     """
@@ -626,6 +631,28 @@ def run_single_calibration_experiment(
             if wandb_run is not None:
                 wandb_run.log(val_metrics)
 
+    # Model saving
+    if model_save_dir is not None:
+        model_type = "binary" if use_binary_targets else "clustering"
+        model_name = f"apricot_{model_type}_{dataset_name}_{calibration_model_identifier.split('/')[-1]}_for_{model_identifier.split('/')[-1]}"
+        model_save_path = os.path.join(model_save_dir, model_name)
+
+        if not os.path.exists(model_save_path):
+            os.makedirs(model_save_path)
+
+        args_save = TrainingArguments(model_save_path, hub_model_id=f'parameterlab/{model_name}')
+        trainer = transformers.Trainer(model=best_model, args=args_save)
+        trainer.save_model(model_save_path)
+        if push_to_hub:
+            dataset_id = {'coqa': 'stanfordnlp/coqa', 'trivia_qa': 'trivia_qa'}.get(dataset_name, None)
+            trainer.push_to_hub(
+                commit_message='add model',
+                finetuned_from=calibration_model_identifier,
+                tasks='question-answering',
+                dataset=dataset_id,
+                model_name=model_name
+            )
+
     # ### EVALUATION ###
     # Compute ECE, Brier score, accuracy, AUROC
     metrics, eval_data = evaluate_model(
@@ -804,6 +831,17 @@ if __name__ == "__main__":
         "--notes", type=str, default=False, help="Additional notes for the experiment."
     )
     parser.add_argument(
+        "--model-save-dir",
+        type=str,
+        default=None,
+        help="Directory to save models to."
+    )
+    parser.add_argument(
+        "--push-to-hub",
+        action="store_true",
+        help="Push models to hugging face hub."
+    )
+    parser.add_argument(
         "--wandb-name",
         type=str,
         default=None,
@@ -876,6 +914,8 @@ if __name__ == "__main__":
         device=args.device,
         data_dir=args.data_dir,
         result_dir=args.result_dir,
+        model_save_dir=args.model_save_dir,
+        push_to_hub=args.push_to_hub,
         wandb_run=wandb_run,
     )
 

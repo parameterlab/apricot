@@ -1,0 +1,111 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "generation",
+  "dataset_name": "truthful_qa",
+  "dataset_size": 473382,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/truthful_qa@741b8276f2d1982aa3d5b832d3ee81ed3b896490/generation/validation-00000-of-00001.parquet": {
+      "num_bytes": 222649,
+      "checksum": null
+    }
+  },
+  "download_size": 222649,
+  "features": {
+    "category": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "best_answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "input_ids": {
+      "feature": {
+        "dtype": "int32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "attention_mask": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "cot_input_ids": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "cot_attention_mask": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "decoder_input_ids": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "decoder_attention_mask": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "labels": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "question_id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "all_correct_answers": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "all_incorrect_answers": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 696031,
+  "splits": {
+    "validation": {
+      "name": "validation",
+      "num_bytes": 473382,
+      "num_examples": 817,
+      "dataset_name": "truthful_qa"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
