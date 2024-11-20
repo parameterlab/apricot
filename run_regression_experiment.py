@@ -638,7 +638,7 @@ def run_single_calibration_experiment(
         if not os.path.exists(model_save_path):
             os.makedirs(model_save_path)
 
-        trainer = transformers.Trainer(model=calibration_model)
+        trainer = transformers.Trainer(model=best_model)
         trainer.save_model(model_save_path)
 
     # ### EVALUATION ###
