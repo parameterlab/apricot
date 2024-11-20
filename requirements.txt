@@ -26,3 +26,4 @@ openai==1.8.0
 deepsig==1.2.8
 dill==0.3.7
 httpx==0.25.1
+huggingface_hub==0.25.0

@@ -92,7 +92,7 @@ except (ImportError, ModuleNotFoundError) as e:
         SECRET_IMPORTED = True
 
     except (AttributeError, KeyError):
-        raise ImportError(
+        warnings.warn(
             "secret.py wasn't found, please rename secret_template.py and fill in the information or make variables "
             "available through os.environ."
         )
